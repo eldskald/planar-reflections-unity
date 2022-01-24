@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.76.0 commit date:2015-11-03, commit time:10:56, hash:f337fea</authoring_tool>
+    </contributor>
+    <created>2016-07-17T21:49:24</created>
+    <modified>2016-07-17T21:49:24</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_effects>
+    <effect id="Cliff-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <phong>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.5 0.5 0.5 1</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">50</float>
+            </shininess>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="Cliff-material" name="Cliff">
+      <instance_effect url="#Cliff-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="Rocktile_convex_mesh-mesh" name="Rocktile convex_mesh">
+      <mesh>
+        <source id="Rocktile_convex_mesh-mesh-positions">
+          <float_array id="Rocktile_convex_mesh-mesh-positions-array" count="99">10.73343 0.08357286 -10 2.17766e-7 0.08357334 0.7334347 10.73343 2.703247 -10 2.21491e-7 2.703248 0.7334346 10.73343 4.465706 -10 2.2149e-7 4.465707 0.7334315 9.324946 4.465706 -10 -2.03861e-7 4.465707 -0.6750539 8.032723 3.530108 -10 3.59573e-7 3.530108 -1.967277 3.085252 0.08357304 1.189514 5.204686 0.08357268 -1.305516 5.177858 0.08357262 -2.539618 8.182626 0.08357262 -1.922567 10.30206 0.08357256 -3.720062 9.953292 0.0835725 -5.678527 11.61664 0.08357238 -8.012589 3.643312 2.632259 1.189514 5.762746 2.632259 -1.305517 5.177858 2.034921 -2.539618 7.803845 2.049642 -1.068214 11.26512 2.049642 -4.00373 10.63444 2.034921 -5.678527 11.86102 2.632259 -7.471989 3.643312 5.483942 1.189514 5.762746 4.692671 -1.305517 5.177858 4.095333 -2.539618 7.583041 3.461268 -1.414058 10.90165 3.461268 -4.228571 9.953292 4.095333 -5.678527 11.70883 3.635594 -7.308586 3.474064 3.106494 -4.571088 7.377635 3.106554 -7.542315</float_array>
+          <technique_common>
+            <accessor source="#Rocktile_convex_mesh-mesh-positions-array" count="33" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Rocktile_convex_mesh-mesh-normals">
+          <float_array id="Rocktile_convex_mesh-mesh-normals-array" count="72">0.8123559 -0.231383 0.5352943 0.6334055 -0.2025114 0.7468512 0.9699931 -0.1202913 -0.21129 0.8892722 -0.3904881 -0.2381471 -0.337763 -0.2316203 0.9122874 0.751746 -0.1646023 0.6385797 -0.1341722 0.01448744 0.9908521 0.9135106 -6.41327e-4 -0.4068145 -0.4520186 0.05990481 0.8899947 0.7621417 0 0.6474103 0.7401828 0.1665849 0.6514437 0.621541 0.2767687 0.7328615 0.9036489 0 -0.4282742 0.8847032 0.2403121 -0.3994376 -0.1242138 6.75488e-7 0.9922556 0.9293763 0.07252204 -0.3619399 -0.2691662 0.9630938 7.15945e-7 -0.1153153 0.9144345 -0.3879588 -0.06797224 0.9255003 -0.3725978 0.1765841 0.9545581 0.2400768 0.2029943 0.9718072 0.1199347 -0.1902255 0.9438275 -0.2701926 -0.14531 0.8867007 -0.4389157 -0.4814431 0.8707453 0.1000766</float_array>
+          <technique_common>
+            <accessor source="#Rocktile_convex_mesh-mesh-normals-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Rocktile_convex_mesh-mesh-map-0">
+          <float_array id="Rocktile_convex_mesh-mesh-map-0-array" count="186">0.1141492 0.9225985 0.1141492 0.9225985 0.1141492 0.9225985 0.1141492 0.9225985 0.1141492 0.9225985 0.1141492 0.9225985 0.1141492 0.9225985 0.1141492 0.9225985 0.5052497 0.898975 0.5052497 0.898975 0.5052497 0.898975 0.5052497 0.898975 0.1141492 0.9225985 0.1141492 0.9225985 0.1141492 0.9225985 0.1141492 0.9225985 0.1141492 0.9225985 0.1141492 0.9225985 0.1141492 0.9225985 0.1141492 0.9225985 0.5052497 0.898975 0.5052497 0.898975 0.5052497 0.898975 0.5052497 0.898975 0.5052497 0.898975 0.5052497 0.898975 0.5052497 0.898975 0.5052497 0.898975 0.3083871 0.898975 0.3083871 0.898975 0.3083871 0.898975 0.3083871 0.898975 0.1141492 0.9225985 0.1141492 0.9225985 0.1141492 0.9225985 0.1141492 0.9225985 0.5052497 0.898975 0.5052497 0.898975 0.5052497 0.898975 0.5052497 0.898975 0.1141492 0.9225985 0.1141492 0.9225985 0.1141492 0.9225985 0.1141492 0.9225985 0.1141492 0.9225985 0.1141492 0.9225985 0.1141492 0.9225985 0.1141492 0.9225985 0.5052497 0.898975 0.5052497 0.898975 0.5052497 0.898975 0.5052497 0.898975 0.1141492 0.9225985 0.1141492 0.9225985 0.1141492 0.9225985 0.1141492 0.9225985 0.5052497 0.898975 0.5052497 0.898975 0.5052497 0.898975 0.5052497 0.898975 0.3083871 0.898975 0.3083871 0.898975 0.3083871 0.898975 0.3083871 0.898975 0.5052497 0.898975 0.5052497 0.898975 0.5052497 0.898975 0.5052497 0.898975 0.5052497 0.898975 0.5052497 0.898975 0.5052497 0.898975 0.5052497 0.898975 0.5052497 0.898975 0.1141492 0.9225985 0.1141492 0.9225985 0.1141492 0.9225985 0.1141492 0.9225985 0.3083871 0.898975 0.3083871 0.898975 0.3083871 0.898975 0.3083871 0.898975 0.1141492 0.9225985 0.1141492 0.9225985 0.1141492 0.9225985 0.1141492 0.9225985 0.5052497 0.898975 0.5052497 0.898975 0.5052497 0.898975 0.5052497 0.898975 0.3083871 0.898975 0.3083871 0.898975 0.3083871 0.898975 0.3083871 0.898975</float_array>
+          <technique_common>
+            <accessor source="#Rocktile_convex_mesh-mesh-map-0-array" count="93" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Rocktile_convex_mesh-mesh-vertices">
+          <input semantic="POSITION" source="#Rocktile_convex_mesh-mesh-positions"/>
+        </vertices>
+        <polylist material="Cliff-material" count="24">
+          <input semantic="VERTEX" source="#Rocktile_convex_mesh-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Rocktile_convex_mesh-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Rocktile_convex_mesh-mesh-map-0" offset="2" set="0"/>
+          <vcount>4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 3 3 3 4 4 4 4 4 </vcount>
+          <p>15 0 0 16 0 1 23 0 2 22 0 3 13 1 4 14 1 5 21 1 6 20 1 7 11 2 8 12 2 9 19 2 10 18 2 11 14 3 12 15 3 13 22 3 14 21 3 15 12 4 16 13 4 17 20 4 18 19 4 19 10 5 20 11 5 21 18 5 22 17 5 23 1 6 24 10 6 25 17 6 26 3 6 27 2 7 28 23 7 29 16 7 30 0 7 31 19 8 32 20 8 33 27 8 34 26 8 35 17 9 36 18 9 37 25 9 38 24 9 39 22 10 40 23 10 41 30 10 42 29 10 43 20 11 44 21 11 45 28 11 46 27 11 47 18 12 48 19 12 49 26 12 50 25 12 51 21 13 52 22 13 53 29 13 54 28 13 55 3 14 56 17 14 57 24 14 58 5 14 59 4 15 60 30 15 61 23 15 62 2 15 63 5 16 64 24 16 65 7 16 66 25 17 67 26 17 68 24 17 69 24 18 70 26 18 71 7 18 72 26 19 73 27 19 74 28 19 75 29 19 76 4 20 77 6 20 78 29 20 79 30 20 80 26 21 81 29 21 82 32 21 83 31 21 84 7 22 85 26 22 86 31 22 87 9 22 88 8 23 89 32 23 90 29 23 91 6 23 92</p>
+        </polylist>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Rocktile_convex_mesh" name="Rocktile_convex_mesh" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 -4.37114e-8 -1 0 0 1 -4.37114e-8 0 0 0 0 1</matrix>
+        <instance_geometry url="#Rocktile_convex_mesh-mesh" name="Rocktile_convex_mesh">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Cliff-material" target="#Cliff-material"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

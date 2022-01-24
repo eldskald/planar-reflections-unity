@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.76.0 commit date:2015-11-03, commit time:10:56, hash:f337fea</authoring_tool>
+    </contributor>
+    <created>2016-07-17T21:49:24</created>
+    <modified>2016-07-17T21:49:24</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_effects>
+    <effect id="Cliff-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <phong>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.5 0.5 0.5 1</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">50</float>
+            </shininess>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="Cliff-material" name="Cliff">
+      <instance_effect url="#Cliff-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="Rocktile_diagonal_mesh-mesh" name="Rocktile diagonal_mesh">
+      <mesh>
+        <source id="Rocktile_diagonal_mesh-mesh-positions">
+          <float_array id="Rocktile_diagonal_mesh-mesh-positions-array" count="105">20 0.08357292 -9.266571 2.17766e-7 0.08357334 0.7334347 20 2.703247 -9.266571 2.21491e-7 2.703248 0.7334346 20 4.465706 -9.266569 2.2149e-7 4.465707 0.7334315 20 4.465706 -10.67505 -2.03861e-7 4.465707 -0.6750539 20 3.530108 -11.96728 3.59573e-7 3.530108 -1.967277 2.929649 0.0835734 1.280732 6.69634 0.08357334 -0.1679955 7.050473 0.08357316 -3.516166 10.69483 0.08357316 -4.011952 10.624 0.08357298 -8.216482 13.17376 0.0835731 -5.550823 18.08012 0.08357304 -5.898517 2.273762 2.691282 1.532996 7.352226 2.691282 -0.4202597 7.050473 2.691282 -2.679791 11.05353 2.691282 -3.175578 10.9827 2.691282 -6.792528 12.68061 1.946126 -5.080661 18.57327 1.946126 -5.498251 2.929649 4.558531 1.280732 6.69634 4.558531 -0.1679958 7.050473 4.229278 -3.516166 10.69483 4.229278 -4.011952 10.624 4.883659 -8.216482 13.17376 3.813375 -5.550823 18.08012 3.813375 -5.898517 2.929649 4.558531 -0.7082058 9.994123 3.530108 -10.11526 6.401278 3.530108 -4.895606 2.731168 3.530108 -2.05049</float_array>
+          <technique_common>
+            <accessor source="#Rocktile_diagonal_mesh-mesh-positions-array" count="35" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Rocktile_diagonal_mesh-mesh-normals">
+          <float_array id="Rocktile_diagonal_mesh-mesh-normals-array" count="75">0.1222197 -0.3107299 0.9426078 0.3589791 0 0.9333456 0.0688436 -0.2269961 0.9714594 0.991533 -0.1286073 -0.0179575 0.9920134 -0.1257923 0.009266138 -0.7106922 -0.2924777 0.639823 0.9024623 -0.1357989 0.4088039 -0.2499887 -0.07794064 0.9651067 -0.5921705 0.3567337 0.7225477 0.112464 0.4847957 0.8673667 0.3589792 0 0.9333456 0.06885248 0.2264547 0.9715852 0.9822373 0.1876315 -0.00209105 0.9820104 0.1888174 -0.001913487 0.8792113 0.1685926 0.4456055 -0.2506362 0.1121193 0.9615669 0.05445384 0.9616383 0.2688617 0.02087008 0.9879423 0.1534091 0.008747518 0.9980998 -0.06099319 -0.03166842 0.9994985 0 0.04453265 0.999008 0 -0.0254141 0.8023865 -0.5962634 -0.2888096 0.8464539 -0.4473307 -0.5022715 0.8073892 -0.3095901 -0.1080923 0.8177658 -0.5653097</float_array>
+          <technique_common>
+            <accessor source="#Rocktile_diagonal_mesh-mesh-normals-array" count="25" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Rocktile_diagonal_mesh-mesh-map-0">
+          <float_array id="Rocktile_diagonal_mesh-mesh-map-0-array" count="196">0.5 0.898975 0.5 0.898975 0.5 0.898975 0.5 0.898975 0.2952629 0.8963502 0.2952629 0.8963502 0.2952629 0.8963502 0.2952629 0.8963502 0.09840023 0.8963502 0.09840023 0.8963502 0.09840023 0.8963502 0.09840023 0.8963502 0.5 0.898975 0.5 0.898975 0.5 0.898975 0.5 0.898975 0.2952629 0.8963502 0.2952629 0.8963502 0.2952629 0.8963502 0.2952629 0.8963502 0.09840023 0.8963502 0.09840023 0.8963502 0.09840023 0.8963502 0.09840023 0.8963502 0.09840023 0.8963502 0.09840023 0.8963502 0.09840023 0.8963502 0.09840023 0.8963502 0.2952629 0.8963502 0.2952629 0.8963502 0.2952629 0.8963502 0.2952629 0.8963502 0.09840023 0.8963502 0.09840023 0.8963502 0.09840023 0.8963502 0.09840023 0.8963502 0.5 0.898975 0.5 0.898975 0.5 0.898975 0.5 0.898975 0.2952629 0.8963502 0.2952629 0.8963502 0.2952629 0.8963502 0.2952629 0.8963502 0.09840023 0.8963502 0.09840023 0.8963502 0.09840023 0.8963502 0.09840023 0.8963502 0.5 0.898975 0.5 0.898975 0.5 0.898975 0.5 0.898975 0.2952629 0.8963502 0.2952629 0.8963502 0.2952629 0.8963502 0.2952629 0.8963502 0.09840023 0.8963502 0.09840023 0.8963502 0.09840023 0.8963502 0.09840023 0.8963502 0.2952629 0.8963502 0.2952629 0.8963502 0.2952629 0.8963502 0.2952629 0.8963502 0.09840023 0.8963502 0.09840023 0.8963502 0.09840023 0.8963502 0.09840023 0.8963502 0.5 0.898975 0.5 0.898975 0.5 0.898975 0.2952629 0.8963502 0.2952629 0.8963502 0.2952629 0.8963502 0.2952629 0.8963502 0.2952629 0.8963502 0.2952629 0.8963502 0.2952629 0.8963502 0.2952629 0.8963502 0.09840023 0.8963502 0.09840023 0.8963502 0.09840023 0.8963502 0.2952629 0.8963502 0.2952629 0.8963502 0.2952629 0.8963502 0.2952629 0.8963502 0.2952629 0.8963502 0.2952629 0.8963502 0.2952629 0.8963502 0.2952629 0.8963502 0.5 0.898975 0.5 0.898975 0.5 0.898975 0.5 0.898975 0.09840023 0.8963502 0.09840023 0.8963502 0.09840023 0.8963502 0.09840023 0.8963502</float_array>
+          <technique_common>
+            <accessor source="#Rocktile_diagonal_mesh-mesh-map-0-array" count="98" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Rocktile_diagonal_mesh-mesh-vertices">
+          <input semantic="POSITION" source="#Rocktile_diagonal_mesh-mesh-positions"/>
+        </vertices>
+        <polylist material="Cliff-material" count="25">
+          <input semantic="VERTEX" source="#Rocktile_diagonal_mesh-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Rocktile_diagonal_mesh-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Rocktile_diagonal_mesh-mesh-map-0" offset="2" set="0"/>
+          <vcount>4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 3 4 4 3 4 4 4 4 </vcount>
+          <p>12 0 0 13 0 1 20 0 2 19 0 3 10 1 4 11 1 5 18 1 6 17 1 7 15 2 8 16 2 9 23 2 10 22 2 11 13 3 12 14 3 13 21 3 14 20 3 15 11 4 16 12 4 17 19 4 18 18 4 19 14 5 20 15 5 21 22 5 22 21 5 23 2 6 24 23 6 25 16 6 26 0 6 27 1 7 28 10 7 29 17 7 30 3 7 31 21 8 32 22 8 33 29 8 34 28 8 35 19 9 36 20 9 37 27 9 38 26 9 39 17 10 40 18 10 41 25 10 42 24 10 43 22 11 44 23 11 45 30 11 46 29 11 47 20 12 48 21 12 49 28 12 50 27 12 51 18 13 52 19 13 53 26 13 54 25 13 55 4 14 56 30 14 57 23 14 58 2 14 59 3 15 60 17 15 61 24 15 62 5 15 63 29 16 64 30 16 65 4 16 66 28 16 67 27 17 68 28 17 69 26 17 70 31 18 71 24 18 72 25 18 73 26 18 74 7 19 75 5 19 76 24 19 77 31 19 78 4 20 79 6 20 80 28 20 81 7 21 82 31 21 83 34 21 84 9 21 85 31 22 86 26 22 87 33 22 88 34 22 89 26 23 90 28 23 91 32 23 92 33 23 93 8 24 94 32 24 95 28 24 96 6 24 97</p>
+        </polylist>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Rocktile_diagonal_mesh" name="Rocktile_diagonal_mesh" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 -4.37114e-8 -1 0 0 1 -4.37114e-8 0 0 0 0 1</matrix>
+        <instance_geometry url="#Rocktile_diagonal_mesh-mesh" name="Rocktile_diagonal_mesh">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Cliff-material" target="#Cliff-material"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

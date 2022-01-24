@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.76.0 commit date:2015-11-03, commit time:10:56, hash:f337fea</authoring_tool>
+    </contributor>
+    <created>2016-07-17T21:49:24</created>
+    <modified>2016-07-17T21:49:24</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_effects>
+    <effect id="Cliff-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <phong>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.5 0.5 0.5 1</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">50</float>
+            </shininess>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="Cliff-material" name="Cliff">
+      <instance_effect url="#Cliff-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="Rocktile_pass_mesh-mesh" name="Rocktile pass_mesh">
+      <mesh>
+        <source id="Rocktile_pass_mesh-mesh-positions">
+          <float_array id="Rocktile_pass_mesh-mesh-positions-array" count="81">9.999997 0.08357334 0.7334287 -3.59693e-6 0.08357334 0.7334347 9.999997 2.703248 0.7334286 -3.59321e-6 2.703248 0.7334346 9.999997 4.465707 0.7334315 -3.59321e-6 4.465707 0.7334315 9.999997 4.465707 -0.6750539 -4.01856e-6 4.465707 -0.6750539 9.999996 3.530108 -1.967277 -3.45512e-6 3.530108 -1.967277 1.535214 0.0835734 1.326591 1.691712 0.08357322 -1.638069 1.535214 2.567231 1.326591 1.691712 3.786644 -1.638069 7.629311 0.08357334 0.1745062 7.651668 0.08357322 -2.195326 7.629311 2.711766 0.1745061 7.651668 2.711766 -2.195326 9.036261 0.0835734 1.278127 9.036261 2.707507 1.278127 8.138848 4.27631 0.4700063 8.567292 4.751462 -0.9797177 2.420609 0.08357334 0.6258525 2.577107 0.08357328 -0.8438509 2.420609 2.567231 0.6258524 2.577107 2.567231 -0.843851 1.595122 3.786644 0.1917099</float_array>
+          <technique_common>
+            <accessor source="#Rocktile_pass_mesh-mesh-positions-array" count="27" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Rocktile_pass_mesh-mesh-normals">
+          <float_array id="Rocktile_pass_mesh-mesh-normals-array" count="57">0.6677388 0 -0.7443957 -0.3604017 0 0.9327972 0.3863607 0.9222759 0.01152431 -0.008705198 0.8099557 -0.5864265 -0.9999556 0 -0.009433746 -0.6171852 0 0.786818 -0.9193779 0.38875 -0.06014859 5.60076e-4 0.9864482 0.1640722 0.275207 0.7787088 -0.563803 0.4920424 0 0.8705713 -0.6162432 0.05227595 0.7858191 0.07923161 0.2551145 0.9636592 -0.1090065 0.5445537 -0.8316123 0.9943785 0 0.1058842 0 -1 0 0.6205947 0 0.7841315 0.80226 0.5937947 0.06153774 0.5085818 0.573069 0.6426014 0.07667511 0.3533101 0.9323588</float_array>
+          <technique_common>
+            <accessor source="#Rocktile_pass_mesh-mesh-normals-array" count="19" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Rocktile_pass_mesh-mesh-map-0">
+          <float_array id="Rocktile_pass_mesh-mesh-map-0-array" count="142">0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998 0.09840023 0.9015998</float_array>
+          <technique_common>
+            <accessor source="#Rocktile_pass_mesh-mesh-map-0-array" count="71" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Rocktile_pass_mesh-mesh-vertices">
+          <input semantic="POSITION" source="#Rocktile_pass_mesh-mesh-positions"/>
+        </vertices>
+        <polylist material="Cliff-material" count="19">
+          <input semantic="VERTEX" source="#Rocktile_pass_mesh-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Rocktile_pass_mesh-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Rocktile_pass_mesh-mesh-map-0" offset="2" set="0"/>
+          <vcount>4 4 4 3 4 4 4 4 3 4 3 4 3 4 4 4 4 3 4 </vcount>
+          <p>11 0 0 13 0 1 25 0 2 23 0 3 1 1 4 10 1 5 12 1 6 3 1 7 7 2 8 5 2 9 26 2 10 13 2 11 7 3 12 13 3 13 9 3 14 15 4 15 14 4 16 16 4 17 17 4 18 19 5 19 16 5 20 14 5 21 18 5 22 20 6 23 21 6 24 17 6 25 16 6 26 4 7 27 6 7 28 21 7 29 20 7 30 6 8 31 8 8 32 21 8 33 2 9 34 19 9 35 18 9 36 0 9 37 20 10 38 16 10 39 19 10 40 4 11 41 20 11 42 19 11 43 2 11 44 8 12 45 17 12 46 21 12 47 22 13 48 23 13 49 25 13 50 24 13 51 10 14 52 11 14 53 23 14 54 22 14 55 12 15 56 10 15 57 22 15 58 24 15 59 13 16 60 26 16 61 24 16 62 25 16 63 26 17 64 12 17 65 24 17 66 12 18 67 26 18 68 5 18 69 3 18 70</p>
+        </polylist>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Rocktile_pass_mesh" name="Rocktile_pass_mesh" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 -4.37114e-8 -1 0 0 1 -4.37114e-8 0 0 0 0 1</matrix>
+        <instance_geometry url="#Rocktile_pass_mesh-mesh" name="Rocktile_pass_mesh">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Cliff-material" target="#Cliff-material"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>
