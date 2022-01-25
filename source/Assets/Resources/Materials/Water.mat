@@ -66,7 +66,7 @@ Material:
     - _DstBlend: 10
     - _FoamDisplacement: 0.6
     - _FoamSize: 0.6
-    - _FresnelPower: 5
+    - _FresnelPower: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
