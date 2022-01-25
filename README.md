@@ -10,6 +10,42 @@ Just add the [this](source/Assets/Scripts/PlanarReflectionsProbe.cs) C# script f
 
 In order to render them somewhere, you need to write your own shader, include the .cginc file in it and enable one of the _PRID_ONE, _PRID_TWO, etc keywords depending on what you set the probe's target ID number. You can see the [water shader](source/Assets/Shaders/Water.shader) I wrote as an example, using a KeywordEnum tag and multi-compile for and easy implementation. Read the comments on the shader files for more information.
 
+# Documentation
+
+This is how a planar reflections probe looks like in the inspector:
+
+![](images/inspector1.png)
+
+You can put the component in an empty game object like I did, but there is no problem doing so in a game object with other components. How each property and method works can be seen on the code, but here's an easy guide.
+
+## Properties
+
+| Type | Property | Description |
+|:----:|:---------|:------------|
+| *int* | targetTextureID | Which texture slot this probe will render to. There are four slots, in case you want to have multiple reflective surfaces on the scene, make multiple probes and make each one render to a different ID. Be aware that each probe is a render call from a camera, so it can be quite GPU intensive |
+| *float* | reflectionsQuality | The resolution of the texture this probe will render to. This float will multiply the current camera this probe is rendering to, so if you're rendering a 1080p screen and set the probe to 0.5, the reflections texture will be 540p. |
+| *bool* | renderInEditor | Allows this probe to render in the editor. |
+| *Vector3* | planeNormal | The normal direction of the reflective plane. |
+| *Vector3* | planePosition | The position of the reflective plane. Can be any point on the plane really, but the position on the transform will do as well. |
+| *bool* | renderBackground | If turned on, will use whatever settings and custom skyboxes on the camera this probe is rendering to. Otherwise, background will have an alpha value of zero on the rendered texture. |
+| *float* | farClipPlane | The far value of the camera this probe will spawn in order to render the reflections. |
+
+## Public Methods
+
+| Type | Method | Description |
+|:----:|:-------|:------------|
+| *void* | IgnoreCamera (Camera cam) | By default, the probe will render reflections for every render call from any camera. If you want it not to render for a specific camera, use this method with *cam* as the camera you want it to ignore. |
+| *void* | UnignoreCamera (Camera cam) | Each time you use the IgnoreCamera method, the camera is sent to an internal list of ignored cameras. Use this method to remove the camera *cam* from this list and start rendering reflections to it again. |
+| *bool* | IsIgnoring (Camera cam) | Returns true if *cam* is on the ignored list, false otherwise. |
+| *void* | ClearIgnoredList () | Empties the ignored list. |
+
+## Static Methods
+
+| Type | Method | Description |
+|:----:|:-------|:------------|
+| *PlanarReflectionsProbe* | FindProbeRenderingTo (int id) | Returns the first PlanarReflectionsProbe object found on the scene that's rendering to target ID *id*. |
+| *PlanarReflectionsProbe[]* | FindProbesRenderingTo (int id) | Returns an array of all PlanarReflectionsProbe objects on the scene that are rendering to target ID *id*. |
+
 # Credits
 
 All code, the water and its material by [Rafael Bordoni](https://github.com/eldskald). All 3D models by [Broken Vector](https://assetstore.unity.com/publishers/12124).
