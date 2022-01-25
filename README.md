@@ -4,4 +4,4 @@ This project is a small demo and the code for a planar reflections probe, easy t
 
 # Credits
 
-All code, the water its noise texture by [Rafael Bordoni](https://github.com/eldskald). All 3D models by [Broken Vector](https://assetstore.unity.com/publishers/12124).
+All code, the water and its material by [Rafael Bordoni](https://github.com/eldskald). All 3D models by [Broken Vector](https://assetstore.unity.com/publishers/12124).
