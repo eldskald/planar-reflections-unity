@@ -17,41 +17,37 @@
 // In the end, I tried the simplest math I could do on the probe C# script and
 // flipped whatever direction needed to flipped here.
 
-#if defined(_PLANAR_REFLECTIONS_ENABLED)
+#if defined(_PRID_ONE)
+    sampler2D _PlanarReflectionsTex1;
+    fixed4 SamplePlanarReflections (float4 screenUV) {
+        float2 uv = screenUV.xy / screenUV.w;
+        uv.y = 1 - uv.y;
+        return tex2D(_PlanarReflectionsTex1, uv);
+    }
 
-    #if defined(_PRID_ONE)
-        sampler2D _PlanarReflectionsTex1;
-        fixed4 SamplePlanarReflections (float4 screenUV) {
-            float2 uv = screenUV.xy / screenUV.w;
-            uv.y = 1 - uv.y;
-            return tex2D(_PlanarReflectionsTex1, uv);
-        }
+#elif defined(_PRID_TWO)
+    sampler2D _PlanarReflectionsTex2;
+    fixed4 SamplePlanarReflections (float4 screenUV) {
+        float2 uv = screenUV.xy / screenUV.w;
+        uv.y = 1 - uv.y;
+        return tex2D(_PlanarReflectionsTex2, uv);
+    }
 
-    #elif defined(_PRID_TWO)
-        sampler2D _PlanarReflectionsTex2;
-        fixed4 SamplePlanarReflections (float4 screenUV) {
-            float2 uv = screenUV.xy / screenUV.w;
-            uv.y = 1 - uv.y;
-            return tex2D(_PlanarReflectionsTex2, uv);
-        }
+#elif defined(_PRID_THREE)
+    sampler2D _PlanarReflectionsTex3;
+    fixed4 SamplePlanarReflections (float4 screenUV) {
+        float2 uv = screenUV.xy / screenUV.w;
+        uv.y = 1 - uv.y;
+        return tex2D(_PlanarReflectionsTex3, uv);
+    }
 
-    #elif defined(_PRID_THREE)
-        sampler2D _PlanarReflectionsTex3;
-        fixed4 SamplePlanarReflections (float4 screenUV) {
-            float2 uv = screenUV.xy / screenUV.w;
-            uv.y = 1 - uv.y;
-            return tex2D(_PlanarReflectionsTex3, uv);
-        }
-
-    #elif defined(_PRID_FOUR)
-        sampler2D _PlanarReflectionsTex4;
-        fixed4 SamplePlanarReflections (float4 screenUV) {
-            float2 uv = screenUV.xy / screenUV.w;
-            uv.y = 1 - uv.y;
-            return tex2D(_PlanarReflectionsTex4, uv);
-        }
-
-    #endif
+#elif defined(_PRID_FOUR)
+    sampler2D _PlanarReflectionsTex4;
+    fixed4 SamplePlanarReflections (float4 screenUV) {
+        float2 uv = screenUV.xy / screenUV.w;
+        uv.y = 1 - uv.y;
+        return tex2D(_PlanarReflectionsTex4, uv);
+    }
 #endif
 
 #endif
