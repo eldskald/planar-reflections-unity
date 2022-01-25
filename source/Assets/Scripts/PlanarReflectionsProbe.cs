@@ -30,6 +30,7 @@ public class PlanarReflectionsProbe : MonoBehaviour {
 
     private GameObject _probeGO;
     private Camera _probe;
+    private Skybox _probeSkybox;
     private ArrayList _ignoredCameras = new ArrayList();
 
     private void OnEnable () {
@@ -50,10 +51,13 @@ public class PlanarReflectionsProbe : MonoBehaviour {
     }
 
     private void InitializeProbe () {
-        _probeGO = new GameObject("", typeof(Camera));
+        _probeGO = new GameObject("", typeof(Camera), typeof(Skybox));
         _probeGO.name = "PRCamera" + _probeGO.GetInstanceID().ToString();
         _probeGO.hideFlags = HideFlags.HideAndDontSave;
         _probe = _probeGO.GetComponent<Camera>();
+        _probeSkybox = _probeGO.GetComponent<Skybox>();
+        _probeSkybox.enabled = false;
+        _probeSkybox.material = null;
     }
 
     private void FinalizeProbe () {
@@ -123,7 +127,17 @@ public class PlanarReflectionsProbe : MonoBehaviour {
         _probe.cameraType = CameraType.Reflection;
         _probe.usePhysicalProperties = false;
         _probe.farClipPlane = farClipPlane;
-        if (!renderBackground) {
+        _probeSkybox.material = null;
+        _probeSkybox.enabled = false;
+        if (renderBackground) {
+            _probe.clearFlags = cam.clearFlags;
+            if (cam.GetComponent<Skybox>()) {
+                Skybox camSkybox = cam.GetComponent<Skybox>();
+                _probeSkybox.material = camSkybox.material;
+                _probeSkybox.enabled = camSkybox.enabled;
+            }
+        }
+        else {
             _probe.clearFlags = CameraClearFlags.Nothing;
         }
     }
