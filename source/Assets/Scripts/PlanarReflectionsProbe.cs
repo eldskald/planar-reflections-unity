@@ -1,3 +1,14 @@
+///////////////////////////////////////////////////////////////////////////////
+//                                                                           //
+// Planar Reflections Probe for Unity's Built-in Render Pipeline             //
+//                                                                           //
+// Author: Rafael Bordoni                                                    //
+// Date: January 25, 2022                                                    //
+// Email: rafaelbordoni00@gmail.com                                          //
+// Repository: https://github.com/eldskald/planar-reflections-unity          //
+//                                                                           //
+///////////////////////////////////////////////////////////////////////////////
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -160,8 +171,6 @@ public class PlanarReflectionsProbe : MonoBehaviour {
             cam.transform.forward, planeNormal);
         _probe.transform.LookAt(_probe.transform.position + probeForward);
         _probe.transform.Rotate(0f, 0f, -cam.transform.eulerAngles.z);
-        // _probe.transform.Rotate(0f, 0f, 180f - cam.transform.eulerAngles.z);
-        
     }
 
     // The clip plane should coincide with the plane with reflections.
