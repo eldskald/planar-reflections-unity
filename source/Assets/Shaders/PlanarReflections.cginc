@@ -17,21 +17,18 @@
 // either _PRID_ONE, _PRID_TWO, _PRID_THREE or _PRID_FOUR, and only one of
 // these. They represent the texture ID you'll use, so if you set the probe to
 // target ID 1, enable _PRID_ONE, if the probe is set to target ID 2, enable
-// _PRID_TWO and so forth. You can also notice we're inverting the vertical
-// coordinates, this has to be done in order for the reflections to be aligned
-// with what's being reflected, try removing these lines and see what happens.
-// Ideally, I would like to do this on the probe script but Unity doesn't let
-// us, we can't flip the render texture or the camera, we could rotate the
-// camera upside down but that isn't the same as flipping it vertically, we
-// would need to flip the texture horizontally if we turned the camera upside
-// down. In the end, I tried the simplest math I could do on the probe C# code
-// and flipped whatever direction needed to be flipped here.
+// _PRID_TWO and so forth. You can also notice we're inverting the horizontal
+// coordinates, this has to be done in order for the reflections to be aligned,
+// think of it like that how in the mirrored world everything is also flipped.
+// I would prefer to do it on the C# script but it looks like it's impossible
+// on Unity, for all I've dug around the only way to flip a texture is on the
+// shader by sampling it with flipped UV coordinates.
 
 #if defined(_PRID_ONE)
     sampler2D _PlanarReflectionsTex1;
     fixed4 SamplePlanarReflections (float4 screenUV) {
         float2 uv = screenUV.xy / screenUV.w;
-        uv.y = 1 - uv.y;
+        uv.x = 1 - uv.x;
         return tex2D(_PlanarReflectionsTex1, uv);
     }
 
@@ -39,7 +36,7 @@
     sampler2D _PlanarReflectionsTex2;
     fixed4 SamplePlanarReflections (float4 screenUV) {
         float2 uv = screenUV.xy / screenUV.w;
-        uv.y = 1 - uv.y;
+        uv.x = 1 - uv.x;
         return tex2D(_PlanarReflectionsTex2, uv);
     }
 
@@ -47,7 +44,7 @@
     sampler2D _PlanarReflectionsTex3;
     fixed4 SamplePlanarReflections (float4 screenUV) {
         float2 uv = screenUV.xy / screenUV.w;
-        uv.y = 1 - uv.y;
+        uv.x = 1 - uv.x;
         return tex2D(_PlanarReflectionsTex3, uv);
     }
 
@@ -55,7 +52,7 @@
     sampler2D _PlanarReflectionsTex4;
     fixed4 SamplePlanarReflections (float4 screenUV) {
         float2 uv = screenUV.xy / screenUV.w;
-        uv.y = 1 - uv.y;
+        uv.x = 1 - uv.x;
         return tex2D(_PlanarReflectionsTex4, uv);
     }
 #endif

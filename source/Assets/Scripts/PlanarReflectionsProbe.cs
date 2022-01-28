@@ -23,12 +23,15 @@ public class PlanarReflectionsProbe : MonoBehaviour {
     ///////////////////////////////////////////////////////////////////////////
 
     [Range(1, 4)] public int targetTextureID = 1;
-    [Range(0.01f, 1.0f)] public float reflectionsQuality = 1f;
-    public bool renderInEditor = false;
+    [Space(10)]
     public Vector3 planeNormal;
     public Vector3 planePosition;
-    public bool renderBackground = true;
+    [Space(8)]
+    [Range(0.01f, 1.0f)] public float reflectionsQuality = 1f;
     public float farClipPlane = 1000;
+    public bool renderBackground = true;
+    [Space(10)]
+    public bool renderInEditor = false;
 
     ///////////////////////////////////////////////////////////////////////////
 
@@ -151,6 +154,9 @@ public class PlanarReflectionsProbe : MonoBehaviour {
         else {
             _probe.clearFlags = CameraClearFlags.Nothing;
         }
+        if (planeNormal.Equals(Vector3.zero)) {
+            planeNormal = Vector3.up;
+        }
     }
 
     private void CreateRenderTexture (Camera cam) {
@@ -168,9 +174,11 @@ public class PlanarReflectionsProbe : MonoBehaviour {
         _probe.transform.position = cam.transform.position - 2 * proj;
 
         Vector3 probeForward = Vector3.Reflect(
-            cam.transform.forward, planeNormal);
-        _probe.transform.LookAt(_probe.transform.position + probeForward);
-        _probe.transform.Rotate(0f, 0f, -cam.transform.eulerAngles.z);
+            cam.transform.forward, planeNormal.normalized);
+        Vector3 probeUp = Vector3.Reflect(
+            cam.transform.up, planeNormal.normalized);
+        _probe.transform.LookAt(
+            _probe.transform.position + probeForward, probeUp);
     }
 
     // The clip plane should coincide with the plane with reflections.
