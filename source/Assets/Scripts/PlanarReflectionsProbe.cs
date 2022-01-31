@@ -4,6 +4,7 @@
 //                                                                           //
 // Author: Rafael Bordoni                                                    //
 // Date: January 25, 2022                                                    //
+// Last Update: January 31, 2022                                             //
 // Email: rafaelbordoni00@gmail.com                                          //
 // Repository: https://github.com/eldskald/planar-reflections-unity          //
 //                                                                           //
@@ -24,9 +25,10 @@ public class PlanarReflectionsProbe : MonoBehaviour {
 
     [Range(1, 4)] public int targetTextureID = 1;
     [Space(10)]
+    public bool useForwardAsNormal = false;
     public Vector3 planeNormal;
     public Vector3 planePosition;
-    [Space(8)]
+    [Space(10)]
     [Range(0.01f, 1.0f)] public float reflectionsQuality = 1f;
     public float farClipPlane = 1000;
     public bool renderBackground = true;
@@ -108,10 +110,11 @@ public class PlanarReflectionsProbe : MonoBehaviour {
             InitializeProbe();
         }
 
+        Vector3 normal = GetNormal();
         UpdateProbeSettings(cam);
         CreateRenderTexture(cam);
-        UpdateProbeTransform(cam);
-        CalculateObliqueProjection();
+        UpdateProbeTransform(cam, normal);
+        CalculateObliqueProjection(normal);
         _probe.Render();
         string texName = "_PlanarReflectionsTex" + targetTextureID.ToString();
         _probe.targetTexture.SetGlobalShaderProperty(texName);
@@ -154,9 +157,6 @@ public class PlanarReflectionsProbe : MonoBehaviour {
         else {
             _probe.clearFlags = CameraClearFlags.Nothing;
         }
-        if (planeNormal.Equals(Vector3.zero)) {
-            planeNormal = Vector3.up;
-        }
     }
 
     private void CreateRenderTexture (Camera cam) {
@@ -166,26 +166,36 @@ public class PlanarReflectionsProbe : MonoBehaviour {
         _probe.targetTexture.Create();
     }
 
+    private Vector3 GetNormal () {
+        if (useForwardAsNormal) {
+            return transform.forward;
+        }
+        else if (planeNormal.Equals(Vector3.zero)) {
+            return Vector3.up;
+        }
+        else {
+            return planeNormal.normalized;
+        }
+    }
+
     // The probe's camera position should be the the current camera's position
     // mirrored by the reflecting plane. Its rotation mirrored too.
-    private void UpdateProbeTransform (Camera cam) {
-        Vector3 proj = planeNormal.normalized * Vector3.Dot(
-            planeNormal.normalized, cam.transform.position - planePosition);
+    private void UpdateProbeTransform (Camera cam, Vector3 normal) {
+        Vector3 proj = normal * Vector3.Dot(
+            normal, cam.transform.position - planePosition);
         _probe.transform.position = cam.transform.position - 2 * proj;
 
-        Vector3 probeForward = Vector3.Reflect(
-            cam.transform.forward, planeNormal.normalized);
-        Vector3 probeUp = Vector3.Reflect(
-            cam.transform.up, planeNormal.normalized);
+        Vector3 probeForward = Vector3.Reflect(cam.transform.forward, normal);
+        Vector3 probeUp = Vector3.Reflect(cam.transform.up, normal);
         _probe.transform.LookAt(
             _probe.transform.position + probeForward, probeUp);
     }
 
     // The clip plane should coincide with the plane with reflections.
-    private void CalculateObliqueProjection () {
+    private void CalculateObliqueProjection (Vector3 normal) {
         Matrix4x4 viewMatrix = _probe.worldToCameraMatrix;
         Vector3 viewPosition = viewMatrix.MultiplyPoint(planePosition);
-        Vector3 viewNormal = viewMatrix.MultiplyVector(planeNormal.normalized);
+        Vector3 viewNormal = viewMatrix.MultiplyVector(normal);
         Vector4 plane = new Vector4(
             viewNormal.x, viewNormal.y, viewNormal.z,
             -Vector3.Dot(viewPosition, viewNormal));

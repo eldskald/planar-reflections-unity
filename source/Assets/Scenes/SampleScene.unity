@@ -1080,12 +1080,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTextureID: 1
-  reflectionsQuality: 1
-  renderInEditor: 1
+  useForwardAsNormal: 0
   planeNormal: {x: 0, y: 1, z: 0}
   planePosition: {x: 0, y: 1, z: 0}
-  renderBackground: 1
+  reflectionsQuality: 1
   farClipPlane: 1000
+  renderBackground: 1
+  renderInEditor: 1
 --- !u!4 &465283896
 Transform:
   m_ObjectHideFlags: 0
