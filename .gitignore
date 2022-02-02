@@ -12,8 +12,6 @@ source/[Ll]ogs/
 source/[Mm]emoryCaptures/
 source/[Uu]serSettings
 
-source/[Aa]ssets/**/*.meta
-
 source/[Aa]ssets/AssetStoreTools*
 source/[Aa]ssets/Plugins/Editor/JetBrains*
 
