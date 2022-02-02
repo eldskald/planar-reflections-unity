@@ -10,6 +10,8 @@ Just add the [this](source/Assets/Scripts/PlanarReflectionsProbe.cs) C# script f
 
 In order to render them somewhere, you need to write your own shader, include the .cginc file in it and enable one of the _PRID_ONE, _PRID_TWO, etc keywords depending on what you set the probe's target ID number. You can see the [water shader](source/Assets/Shaders/Water.shader) I wrote as an example, using a KeywordEnum tag and multi-compile for and easy implementation. Read the comments on the shader files for more information.
 
+Lastly, I made [this](https://youtu.be/w84-l3IEhXM) YouTube video to explain how planar reflections work. With the knowledge in there, you can reproduce this probe into any project in any other engine, probably.
+
 # Documentation
 
 This is how a planar reflections probe looks like in the inspector:
