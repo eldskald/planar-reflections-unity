@@ -18,16 +18,15 @@ This is how a planar reflections probe looks like in the inspector:
 
 ![](images/inspector1.png)
 
-You can put the component in an empty game object like I did, but there is no problem doing so in a game object with other components. How each property and method works can be seen on the code, but here's an easy guide.
+All you need to do is put the component in a game object and position it in the reflective plane, with the forward vector (the blue one in the transform widget) pointing away from the plane. In the sample scene, I put it in the water so whenever I move or rotate the water, the reflections remain correct. Pay attention to the rotation, as the probe's blue vector must be perpendicular to the water.
 
 ## Properties
 
 | Type | Property | Description |
 |:----:|:---------|:------------|
 | *int* | targetTextureID | Which texture slot this probe will render to. There are four slots, in case you want to have multiple reflective surfaces on the scene, make multiple probes and make each one render to a different ID. Be aware that each probe is a render call from a camera, so it can be quite GPU intensive |
-| *bool* | useForwardAsNormal | Uses the forward vector from the transform where the probe component is as the reflective plane's normal. When true, planeNormal does nothing. Use it when the reflective plane is in an awkward rotation, just put the probe in the same location as the plane and rotate it so that the forward vector (the blue one on the widget) points outwards to it. |
-| *Vector3* | planeNormal | The normal direction of the reflective plane. |
-| *Vector3* | planePosition | The position of the reflective plane. Can be any point on the plane really, but the position on the transform will do as well. |
+| *bool* | useCustomNormal | When turned on, you set the reflective plane's normal vector to whatever you want. When off, it's set to the transform's forward vector. |
+| *Vector3* | customNormal | The normal direction of the reflective plane if you turn on useCustomNormal |
 | *float* | reflectionsQuality | The resolution of the texture this probe will render to. This float will multiply the current camera this probe is rendering to, so if you're rendering a 1080p screen and set the probe to 0.5, the reflections texture will be 540p. |
 | *float* | farClipPlane | The far value of the camera this probe will spawn in order to render the reflections. |
 | *bool* | renderBackground | If turned on, will use whatever settings and custom skyboxes on the camera this probe is rendering to. Otherwise, background will have an alpha value of zero on the rendered texture. |
@@ -48,6 +47,12 @@ You can put the component in an empty game object like I did, but there is no pr
 |:----:|:-------|:------------|
 | *PlanarReflectionsProbe* | FindProbeRenderingTo (int id) | Returns the first PlanarReflectionsProbe object found on the scene that's rendering to target ID *id*. |
 | *PlanarReflectionsProbe[]* | FindProbesRenderingTo (int id) | Returns an array of all PlanarReflectionsProbe objects on the scene that are rendering to target ID *id*. |
+
+# Changelog
+
+- **Jan 23, 2023** <br/> Remove planePosition, now using the game object's transform's position instead. Renamed useForwardAsNormal for useCustomNormal and renamed planeNormal to customNormal.
+
+- **Jan 25, 2022** <br/> Initial release.
 
 # Credits
 
