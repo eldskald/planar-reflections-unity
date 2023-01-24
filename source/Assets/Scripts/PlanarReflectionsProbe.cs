@@ -4,7 +4,7 @@
 //                                                                           //
 // Author: Rafael Bordoni                                                    //
 // Date: January 25, 2022                                                    //
-// Last Update: January 31, 2022                                             //
+// Last Update: January 23, 2023                                             //
 // Email: rafaelbordoni00@gmail.com                                          //
 // Repository: https://github.com/eldskald/planar-reflections-unity          //
 //                                                                           //
@@ -17,17 +17,10 @@ using UnityEngine;
 [ExecuteAlways, AddComponentMenu("Rendering/Planar Reflections Probe")]
 public class PlanarReflectionsProbe : MonoBehaviour {
 
-
-
-    ///////////////////////////////////////////////////////////////////////////
-    // Public properties that show up on the inspector.                      //
-    ///////////////////////////////////////////////////////////////////////////
-
     [Range(1, 4)] public int targetTextureID = 1;
     [Space(10)]
-    public bool useForwardAsNormal = false;
-    public Vector3 planeNormal;
-    public Vector3 planePosition;
+    public bool useCustomNormal = false;
+    public Vector3 customNormal;
     [Space(10)]
     [Range(0.01f, 1.0f)] public float reflectionsQuality = 1f;
     public float farClipPlane = 1000;
@@ -35,19 +28,11 @@ public class PlanarReflectionsProbe : MonoBehaviour {
     [Space(10)]
     public bool renderInEditor = false;
 
-    ///////////////////////////////////////////////////////////////////////////
-
-
-
-    ///////////////////////////////////////////////////////////////////////////
-    // Basic private methods and properties that control probe behavior,     //
-    // both at runtime and at the editor.                                    //
-    ///////////////////////////////////////////////////////////////////////////
-
     private GameObject _probeGO;
     private Camera _probe;
     private Skybox _probeSkybox;
     private ArrayList _ignoredCameras = new ArrayList();
+
 
     private void OnEnable () {
         Camera.onPreRender += PreRenderRoutine;
@@ -129,15 +114,6 @@ public class PlanarReflectionsProbe : MonoBehaviour {
         _probe.targetTexture = null;
     }
 
-    ///////////////////////////////////////////////////////////////////////////
-
-
-
-    ///////////////////////////////////////////////////////////////////////////
-    // Auxiliary private methods called by the ones above. This is           //
-    // where most of the math and other gritty details are.                  //
-    ///////////////////////////////////////////////////////////////////////////
-
     private void UpdateProbeSettings (Camera cam) {
         _probe.CopyFrom(cam);
         _probe.enabled = false;
@@ -167,14 +143,14 @@ public class PlanarReflectionsProbe : MonoBehaviour {
     }
 
     private Vector3 GetNormal () {
-        if (useForwardAsNormal) {
+        if (!useCustomNormal) {
             return transform.forward;
         }
-        else if (planeNormal.Equals(Vector3.zero)) {
+        else if (customNormal.Equals(Vector3.zero)) {
             return Vector3.up;
         }
         else {
-            return planeNormal.normalized;
+            return customNormal.normalized;
         }
     }
 
@@ -182,7 +158,7 @@ public class PlanarReflectionsProbe : MonoBehaviour {
     // mirrored by the reflecting plane. Its rotation mirrored too.
     private void UpdateProbeTransform (Camera cam, Vector3 normal) {
         Vector3 proj = normal * Vector3.Dot(
-            normal, cam.transform.position - planePosition);
+            normal, cam.transform.position - transform.position);
         _probe.transform.position = cam.transform.position - 2 * proj;
 
         Vector3 probeForward = Vector3.Reflect(cam.transform.forward, normal);
@@ -194,7 +170,7 @@ public class PlanarReflectionsProbe : MonoBehaviour {
     // The clip plane should coincide with the plane with reflections.
     private void CalculateObliqueProjection (Vector3 normal) {
         Matrix4x4 viewMatrix = _probe.worldToCameraMatrix;
-        Vector3 viewPosition = viewMatrix.MultiplyPoint(planePosition);
+        Vector3 viewPosition = viewMatrix.MultiplyPoint(transform.position);
         Vector3 viewNormal = viewMatrix.MultiplyVector(normal);
         Vector4 plane = new Vector4(
             viewNormal.x, viewNormal.y, viewNormal.z,
@@ -202,13 +178,6 @@ public class PlanarReflectionsProbe : MonoBehaviour {
         _probe.projectionMatrix = _probe.CalculateObliqueMatrix(plane);
     }
 
-    ///////////////////////////////////////////////////////////////////////////
-
-
-
-    ///////////////////////////////////////////////////////////////////////////
-    // Public methods.                                                       //
-    ///////////////////////////////////////////////////////////////////////////
 
     public void IgnoreCamera (Camera cam) {
         if (!_ignoredCameras.Contains(cam)) {
@@ -230,13 +199,6 @@ public class PlanarReflectionsProbe : MonoBehaviour {
         return _ignoredCameras.Contains(cam);
     }
 
-    ///////////////////////////////////////////////////////////////////////////
-
-
-
-    ///////////////////////////////////////////////////////////////////////////
-    // Static methods.                                                       //
-    ///////////////////////////////////////////////////////////////////////////
 
     public static PlanarReflectionsProbe[] FindProbesRenderingTo (int id) {
         var probes = FindObjectsOfType<PlanarReflectionsProbe>();
@@ -259,6 +221,4 @@ public class PlanarReflectionsProbe : MonoBehaviour {
         }
         return null;
     }
-
-    ///////////////////////////////////////////////////////////////////////////
 }
