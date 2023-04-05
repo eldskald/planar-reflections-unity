@@ -1,0 +1,14 @@
+{
+    "name": "Unity.Toolchain.Linux-x86_64.EditorTests",
+    "references": [
+        "Unity.Toolchain.Editor",
+        "Unity.Sysroot"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": []
+}

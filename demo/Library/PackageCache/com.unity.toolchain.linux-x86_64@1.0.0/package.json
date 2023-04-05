@@ -1,0 +1,23 @@
+{
+  "name": "com.unity.toolchain.linux-x86_64",
+  "displayName": "Toolchain Linux x64",
+  "description": "Toolchain to build player target Linux x86_64 on host Linux x86_64",
+  "version": "1.0.0",
+  "unity": "2019.3",
+  "keywords": [
+    "toolchain",
+    "linux"
+  ],
+  "dependencies": {
+    "com.unity.sysroot": "1.0.0",
+    "com.unity.sysroot.linux-x86_64": "1.0.0"
+  },
+  "upmCi": {
+    "footprint": "49c23e1dab910c411a5305f382113626d3af91dd"
+  },
+  "repository": {
+    "url": "https://github.com/Unity-Technologies/com.unity.sysroot.git",
+    "type": "git",
+    "revision": "0b6b1770930fd9a6c9365613ff2cba3eb81810dd"
+  }
+}

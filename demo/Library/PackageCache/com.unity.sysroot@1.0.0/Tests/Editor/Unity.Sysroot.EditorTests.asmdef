@@ -1,0 +1,14 @@
+{
+    "name": "Unity.Sysroot.EditorTests",
+    "references": [
+        "Unity.Sysroot.Editor",
+        "Unity.Sysroot"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": []
+}

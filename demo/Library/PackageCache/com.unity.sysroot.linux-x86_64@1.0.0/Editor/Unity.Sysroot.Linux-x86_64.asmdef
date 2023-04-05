@@ -1,0 +1,10 @@
+{
+    "name": "Unity.Sysroot.Linux_x86_64",
+    "references": [
+        "Unity.SysrootPackage.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": []
+}
