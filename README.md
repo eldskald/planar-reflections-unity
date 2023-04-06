@@ -62,4 +62,4 @@ All you need to do is put the component in a game object and position it in the 
 
 # Credits
 
-Built-in implementation by [Rafael Bordoni](https://github.com/eldskald), URP port made by [Marcell](https://github.com/marcell123455). All 3D models by [Broken Vector](https://assetstore.unity.com/publishers/12124).
+Built-in implementation by [Rafael Bordoni](https://github.com/eldskald), URP port made by [Marcell Hermanowski](https://github.com/marcell123455). All 3D models by [Broken Vector](https://assetstore.unity.com/publishers/12124).
