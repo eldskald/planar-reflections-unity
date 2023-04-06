@@ -1,9 +1,0 @@
-{
-    "name": "Unity.SysrootPackage.Editor",
-    "references": [
-    ],
-    "includePlatforms": [
-        "Editor"
-    ],
-    "excludePlatforms": []
-}
