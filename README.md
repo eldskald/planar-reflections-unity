@@ -1,14 +1,18 @@
-# Planar Reflections for Unity's Built-In Render Pipeline
-
 ![](images/ss1.png)
 
-This project is a small demo and the code for a planar reflections probe, easy to incorporate into any project. Feel free to use it on your own games or to study and and learn from it! The main file you're looking for is [this](src/built-in/PlanarReflectionsProbe.cs) one if you want to see how I made my implementation. Feel free to optimize, adapt it to your projects or use it as is.
+# Planar Reflections for Unity
+
+This project is a small demo and the code for a planar reflections probe, easy to incorporate into any project. It has a version for the Built-in Pipeline and one for URP. Feel free to use it on your own games or to study and and learn from it!
 
 # Instructions
 
-Just add the [this](src/built-in/PlanarReflectionsProbe.cs) C# script file and [this](src/built-in/PlanarReflections.cginc) shader include file to your project. After that, go to the editor and you can add the Planar Reflections Probe component to any game object in the scene, just click Add Component > Rendering > Planar Reflections Probe.
+If you're on Built-in Pipeline, add the files on the [src/built-in](src/built-in) folder in your project. If you're on URP, take the files on [src/urp](src/urp) instead.
 
-In order to render them somewhere, you need to write your own shader, include the .cginc file in it and enable one of the _PRID_ONE, _PRID_TWO, etc keywords depending on what you set the probe's target ID number. You can see the [water shader](source/Assets/Shaders/Water.shader) I wrote as an example, using a KeywordEnum tag and multi-compile for and easy implementation. Read the comments on the shader files for more information.
+After that, the Planar Reflections Probe component will be available in the editor. Make a game object with this component on your scene and set it up.
+
+Now you still need a shader that samples the reflections. Include the .cginc file you took from this repository on your shader and enable one of the `_PRID_ONE`, `_PRID_TWO`, etc keywords depending on what you set the probe's target ID number. Use the `SampleReflections(screenUV)` function to sample them.
+
+You can see the [water shader](demo/Assets/Shaders/Built-In/Water.shader) as an example for built-in pipeline, using a KeywordEnum tag and multi-compile for and easy implementation. For an URP example, look at [planar ground shader](demo/Assets/Shaders/URP/PlanarGroundURP.shader).
 
 Lastly, I made [this](https://youtu.be/w84-l3IEhXM) YouTube video to explain how planar reflections work. With the knowledge in there, you can reproduce this probe into any project in any other engine, probably.
 
@@ -50,10 +54,12 @@ All you need to do is put the component in a game object and position it in the 
 
 # Changelog
 
+- **Apr 6, 2023** <br/> Add the URP version.
+
 - **Jan 23, 2023** <br/> Remove planePosition, now using the game object's transform's position instead. Renamed useForwardAsNormal for useCustomNormal and renamed planeNormal to customNormal.
 
 - **Jan 25, 2022** <br/> Initial release.
 
 # Credits
 
-All code, the water and its material by [Rafael Bordoni](https://github.com/eldskald). All 3D models by [Broken Vector](https://assetstore.unity.com/publishers/12124).
+Built-in implementation by [Rafael Bordoni](https://github.com/eldskald), URP port made by [Marcell](https://github.com/marcell123455). All 3D models by [Broken Vector](https://assetstore.unity.com/publishers/12124).
