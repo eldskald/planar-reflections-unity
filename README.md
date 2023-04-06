@@ -4,7 +4,7 @@
 
 This project is a small demo and the code for a planar reflections probe, easy to incorporate into any project. It has a version for the Built-in Pipeline and one for URP. Feel free to use it on your own games or to study and and learn from it!
 
-# Instructions
+## Instructions
 
 If you're on Built-in Pipeline, add the files on the [src/built-in](src/built-in) folder in your project. If you're on URP, take the files on [src/urp](src/urp) instead.
 
@@ -16,7 +16,7 @@ You can see the [water shader](demo/Assets/Shaders/Built-In/Water.shader) as an 
 
 Lastly, I made [this](https://youtu.be/w84-l3IEhXM) YouTube video to explain how planar reflections work. With the knowledge in there, you can reproduce this probe into any project in any other engine, probably.
 
-# Documentation
+## Documentation
 
 This is how a planar reflections probe looks like in the inspector:
 
@@ -24,7 +24,7 @@ This is how a planar reflections probe looks like in the inspector:
 
 All you need to do is put the component in a game object and position it in the reflective plane, with the forward vector (the blue one in the transform widget) pointing away from the plane. In the sample scene, I put it in the water so whenever I move or rotate the water, the reflections remain correct. Pay attention to the rotation, as the probe's blue vector must be perpendicular to the water.
 
-## Properties
+### Properties
 
 | Type | Property | Description |
 |:----:|:---------|:------------|
@@ -36,7 +36,7 @@ All you need to do is put the component in a game object and position it in the 
 | *bool* | renderBackground | If turned on, will use whatever settings and custom skyboxes on the camera this probe is rendering to. Otherwise, background will have an alpha value of zero on the rendered texture. |
 | *bool* | renderInEditor | Allows this probe to render in the editor. |
 
-## Public Methods
+### Public Methods
 
 | Type | Method | Description |
 |:----:|:-------|:------------|
@@ -45,14 +45,14 @@ All you need to do is put the component in a game object and position it in the 
 | *bool* | IsIgnoring (Camera cam) | Returns true if *cam* is on the ignored list, false otherwise. |
 | *void* | ClearIgnoredList () | Empties the ignored list. |
 
-## Static Methods
+### Static Methods
 
 | Type | Method | Description |
 |:----:|:-------|:------------|
 | *PlanarReflectionsProbe* | FindProbeRenderingTo (int id) | Returns the first PlanarReflectionsProbe object found on the scene that's rendering to target ID *id*. |
 | *PlanarReflectionsProbe[]* | FindProbesRenderingTo (int id) | Returns an array of all PlanarReflectionsProbe objects on the scene that are rendering to target ID *id*. |
 
-# Changelog
+## Changelog
 
 - **Apr 6, 2023** <br/> Add the URP version.
 
@@ -60,6 +60,6 @@ All you need to do is put the component in a game object and position it in the 
 
 - **Jan 25, 2022** <br/> Initial release.
 
-# Credits
+## Credits
 
 Built-in implementation by [Rafael Bordoni](https://github.com/eldskald), URP port made by [Marcell Hermanowski](https://github.com/marcell123455). All 3D models by [Broken Vector](https://assetstore.unity.com/publishers/12124).
