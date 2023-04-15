@@ -1,10 +1,10 @@
 ///////////////////////////////////////////////////////////////////////////////
 //                                                                           //
-// Planar Reflections Probe for Unity's Built-in Render Pipeline             //
+// Planar Reflections Probe for Unity                                        //
 //                                                                           //
 // Author: Rafael Bordoni                                                    //
 // Date: January 25, 2022                                                    //
-// Last Update: January 23, 2023                                             //
+// Last Update: April 14, 2023                                               //
 // Email: rafaelbordoni00@gmail.com                                          //
 // Repository: https://github.com/eldskald/planar-reflections-unity          //
 //                                                                           //
@@ -31,23 +31,23 @@ public class PlanarReflectionsProbe : MonoBehaviour {
     private GameObject _probeGO;
     private Camera _probe;
     private Skybox _probeSkybox;
+    private Dictionary<Camera, RenderTexture> _camTextureMap =
+        new Dictionary<Camera, RenderTexture>();
     private ArrayList _ignoredCameras = new ArrayList();
+
 
     private void OnEnable () {
         Camera.onPreRender += PreRenderRoutine;
-        Camera.onPostRender += PostRenderRoutine;
     }
 
     private void OnDisable () {
         FinalizeProbe();
         Camera.onPreRender -= PreRenderRoutine;
-        Camera.onPostRender -= PostRenderRoutine;
     }
 
     private void OnDestroy () {
         FinalizeProbe();
         Camera.onPreRender -= PreRenderRoutine;
-        Camera.onPostRender -= PostRenderRoutine;
     }
 
     private void InitializeProbe () {
@@ -61,6 +61,7 @@ public class PlanarReflectionsProbe : MonoBehaviour {
     }
 
     private void FinalizeProbe () {
+        CleanupRenderTextures();
         if (_probe == null) {
             return;
         }
@@ -70,6 +71,13 @@ public class PlanarReflectionsProbe : MonoBehaviour {
         else {
             Destroy(_probeGO);
         }
+    }
+
+    private void CleanupRenderTextures() {
+        foreach (RenderTexture texture in _camTextureMap.Values) {
+            texture.Release();
+        }
+        _camTextureMap.Clear();
     }
 
     private bool CheckCamera (Camera cam) {
@@ -102,14 +110,6 @@ public class PlanarReflectionsProbe : MonoBehaviour {
         _probe.targetTexture.SetGlobalShaderProperty(texName);
     }
 
-    private void PostRenderRoutine (Camera cam) {
-        if (CheckCamera(cam) || _probe == null) {
-            return;
-        }
-        _probe.targetTexture.Release();
-        _probe.targetTexture = null;
-    }
-
     private void UpdateProbeSettings (Camera cam) {
         _probe.CopyFrom(cam);
         _probe.enabled = false;
@@ -131,11 +131,22 @@ public class PlanarReflectionsProbe : MonoBehaviour {
         }
     }
 
-    private void CreateRenderTexture (Camera cam) {
+    private void CreateRenderTexture(Camera cam) {
         int width = (int)((float)cam.pixelWidth * reflectionsQuality);
         int height = (int)((float)cam.pixelHeight * reflectionsQuality);
-        _probe.targetTexture = new RenderTexture(width, height, 24);
-        _probe.targetTexture.Create();
+        RenderTexture texture = _camTextureMap.GetValueOrDefault(cam, null);
+        if (!texture || texture.width != width || texture.height != height) {
+            if (texture) {
+                _camTextureMap.Remove(cam);
+                texture.Release();
+            }
+            _probe.targetTexture = new RenderTexture(width, height, 24);
+            _probe.targetTexture.Create();
+            _camTextureMap.Add(cam, _probe.targetTexture);
+        }
+        else {
+            _probe.targetTexture = texture;
+        }
     }
 
     private Vector3 GetNormal () {
@@ -156,7 +167,6 @@ public class PlanarReflectionsProbe : MonoBehaviour {
         Vector3 proj = normal * Vector3.Dot(
             normal, cam.transform.position - transform.position);
         _probe.transform.position = cam.transform.position - 2 * proj;
-
         Vector3 probeForward = Vector3.Reflect(cam.transform.forward, normal);
         Vector3 probeUp = Vector3.Reflect(cam.transform.up, normal);
         _probe.transform.LookAt(

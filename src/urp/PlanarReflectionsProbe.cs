@@ -1,11 +1,11 @@
 ///////////////////////////////////////////////////////////////////////////////
 //                                                                           //
-// Planar Reflections Probe for Unity's Built-in Render Pipeline             //
+// Planar Reflections Probe for Unity                                        //
 //                                                                           //
-// Universal RP Port made by Marcell Hermanowski                                      //
+// Universal RP Port made by Marcell Hermanowski                             //
 // Author: Rafael Bordoni                                                    //
 // Date: January 25, 2022                                                    //
-// Last Update: January 23, 2023                                             //
+// Last Update: April 14, 2023                                               //
 // Email: rafaelbordoni00@gmail.com                                          //
 // Repository: https://github.com/eldskald/planar-reflections-unity          //
 //                                                                           //
@@ -34,24 +34,22 @@ public class PlanarReflectionsProbe : MonoBehaviour {
     public GameObject _probeGO;
     public Camera _probe;
     private Skybox _probeSkybox;
+    private Dictionary<Camera, RenderTexture> _camTextureMap =
+        new Dictionary<Camera, RenderTexture>();
     private ArrayList _ignoredCameras = new ArrayList();
 
-
     private void OnEnable () {
-        RenderPipelineManager.beginCameraRendering += PreRenderRoutine;
-        RenderPipelineManager.endCameraRendering += PostRenderRoutine;
+        RenderPipelineManager.beginCameraRendering += PreRender;
     }
 
     private void OnDisable () {
         FinalizeProbe();
-        RenderPipelineManager.beginCameraRendering -= PreRenderRoutine;
-        RenderPipelineManager.endCameraRendering -= PostRenderRoutine;
+        RenderPipelineManager.beginCameraRendering -= PreRender;
     }
 
     private void OnDestroy () {
         FinalizeProbe();
-        RenderPipelineManager.beginCameraRendering -= PreRenderRoutine;
-        RenderPipelineManager.endCameraRendering -= PostRenderRoutine;
+        RenderPipelineManager.beginCameraRendering -= PreRender;
     }
 
     private void InitializeProbe () {
@@ -62,7 +60,6 @@ public class PlanarReflectionsProbe : MonoBehaviour {
         _probeSkybox = _probeGO.GetComponent<Skybox>();
         _probeSkybox.enabled = false;
         _probeSkybox.material = null;
-
     }
 
     private void FinalizeProbe () {
@@ -75,6 +72,13 @@ public class PlanarReflectionsProbe : MonoBehaviour {
         else {
             Destroy(_probeGO);
         }
+    }
+
+    private void CleanupRenderTextures() {
+        foreach (RenderTexture texture in _camTextureMap.Values) {
+            texture.Release();
+        }
+        _camTextureMap.Clear();
     }
 
     private bool CheckCamera (Camera cam) {
@@ -90,34 +94,21 @@ public class PlanarReflectionsProbe : MonoBehaviour {
         return false;
     }
 
-    private void PreRenderRoutine (ScriptableRenderContext context, Camera cam) {
+    private void PreRender (ScriptableRenderContext context, Camera cam) {
         if (CheckCamera(cam)) {
             return;
         }
-
         else if (_probe == null) {
             InitializeProbe();
         }
-
         Vector3 normal = GetNormal();
         UpdateProbeSettings(cam);
         CreateRenderTexture(cam);
         UpdateProbeTransform(cam, normal);
         CalculateObliqueProjection(normal);
         UniversalRenderPipeline.RenderSingleCamera(context,_probe);
-
-
         string texName = "_PlanarReflectionsTex" + targetTextureID.ToString();
         _probe.targetTexture.SetGlobalShaderProperty(texName);
-    }
-
-    private void PostRenderRoutine (ScriptableRenderContext context, Camera cam) {
-        if (CheckCamera(cam) || _probe == null) {
-            return;
-        }
-
-        _probe.targetTexture.Release();
-        _probe.targetTexture = null;
     }
 
     private void UpdateProbeSettings (Camera cam) {
@@ -141,11 +132,22 @@ public class PlanarReflectionsProbe : MonoBehaviour {
         }
     }
 
-    private void CreateRenderTexture (Camera cam) {
+    private void CreateRenderTexture(Camera cam) {
         int width = (int)((float)cam.pixelWidth * reflectionsQuality);
         int height = (int)((float)cam.pixelHeight * reflectionsQuality);
-        _probe.targetTexture = new RenderTexture(width, height, 24);
-        _probe.targetTexture.Create();
+        RenderTexture texture = _camTextureMap.GetValueOrDefault(cam, null);
+        if (!texture || texture.width != width || texture.height != height) {
+            if (texture) {
+                _camTextureMap.Remove(cam);
+                texture.Release();
+            }
+            _probe.targetTexture = new RenderTexture(width, height, 24);
+            _probe.targetTexture.Create();
+            _camTextureMap.Add(cam, _probe.targetTexture);
+        }
+        else {
+            _probe.targetTexture = texture;
+        }
     }
 
     private Vector3 GetNormal () {
@@ -184,7 +186,6 @@ public class PlanarReflectionsProbe : MonoBehaviour {
         _probe.projectionMatrix = _probe.CalculateObliqueMatrix(plane);
     }
 
-
     public void IgnoreCamera (Camera cam) {
         if (!_ignoredCameras.Contains(cam)) {
             _ignoredCameras.Add(cam);
@@ -204,7 +205,6 @@ public class PlanarReflectionsProbe : MonoBehaviour {
     public bool IsIgnoring (Camera cam) {
         return _ignoredCameras.Contains(cam);
     }
-
 
     public static PlanarReflectionsProbe[] FindProbesRenderingTo (int id) {
         var probes = FindObjectsOfType<PlanarReflectionsProbe>();

@@ -54,6 +54,8 @@ All you need to do is put the component in a game object and position it in the 
 
 ## Changelog
 
+- **Apr 14, 2023**<br/> Keep RenderTextures in memory so we don't create a new one every frame for each camera that needs reflections, improving performance.
+
 - **Apr 6, 2023** <br/> Add the URP version.
 
 - **Jan 23, 2023** <br/> Remove planePosition, now using the game object's transform's position instead. Renamed useForwardAsNormal for useCustomNormal and renamed planeNormal to customNormal.
